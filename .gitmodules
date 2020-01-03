@@ -1,0 +1,3 @@
+[submodule "deps/NioFlex"]
+	path = deps/NioFlex
+	url = https://github.com/maheshkhanwalkar/NioFlex
