@@ -13,6 +13,7 @@ public class Router
 
     public void process(String raw)
     {
+        LOG.info("Parsing JSON");
         Format obj = gson.fromJson(raw, Format.class);
 
         switch (obj.getCmd())
@@ -22,7 +23,7 @@ public class Router
                 break;
 
             default:
-                LOG.warn("unknown command, ignorning");
+                LOG.warn("unknown command, ignoring");
                 break;
         }
     }
@@ -30,5 +31,6 @@ public class Router
     private void register(Map<String, String> data)
     {
         // TODO extract the data from the map
+        LOG.info("Processing 'register' command");
     }
 }

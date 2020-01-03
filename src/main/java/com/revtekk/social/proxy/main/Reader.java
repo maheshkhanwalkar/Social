@@ -17,6 +17,7 @@ public class Reader implements ServerHooks
     @Override
     public boolean onAccept(Client client)
     {
+        LOG.info("Accepted new client");
         return true;
     }
 
