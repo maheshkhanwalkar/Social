@@ -1,4 +1,4 @@
-package com.revtekk.social.proxy;
+package com.revtekk.social.proxy.main;
 
 import com.revtekk.nioflex.config.SecurityType;
 import com.revtekk.nioflex.config.SocketType;

@@ -1,4 +1,4 @@
-package com.revtekk.social.proxy;
+package com.revtekk.social.proxy.main;
 
 public class Config
 {
