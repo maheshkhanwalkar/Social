@@ -19,20 +19,39 @@ public class Router
         switch (obj.getCmd())
         {
             case "register":
-                register(obj.getData());
-                break;
-
+                return register(obj.getData());
             default:
-                LOG.warn("unknown command, ignoring");
+                LOG.info("unknown command, ignoring");
+                return false;
+        }
+    }
+
+    private boolean register(Map<String, String> data)
+    {
+        LOG.info("Processing 'register' command");
+
+        // ensure all the parameters are there
+        if(!check(data, "first", "last", "dob", "cell", "email"))
+        {
+            LOG.info("JSON is missing some entries, ignoring request");
+            return false;
+        }
+
+        // TODO send this to the Register service
+        return true;
+    }
+
+    private boolean check(Map<String, String> data, String... keys)
+    {
+        for(String key : keys)
+        {
+            if(!data.containsKey(key))
+                return false;
+
+            if(data.get(key) == null)
                 return false;
         }
 
         return true;
-    }
-
-    private void register(Map<String, String> data)
-    {
-        // TODO extract the data from the map
-        LOG.info("Processing 'register' command");
     }
 }
