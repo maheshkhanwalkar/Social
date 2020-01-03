@@ -1,5 +1,6 @@
 package com.revtekk.social.proxy.main;
 
+import com.revtekk.social.proxy.router.Router;
 import org.eclipse.jetty.server.Request;
 import org.eclipse.jetty.server.handler.AbstractHandler;
 import org.slf4j.Logger;
@@ -14,6 +15,7 @@ import java.io.IOException;
 public class Handler extends AbstractHandler
 {
     private static final Logger LOG = LoggerFactory.getLogger(Handler.class);
+    private static final Router router = new Router();
 
     @Override
     public void handle(String target, Request baseRequest, HttpServletRequest request,
@@ -40,8 +42,19 @@ public class Handler extends AbstractHandler
         char[] raw = new char[len];
         br.read(raw);
 
-        // TODO parse the JSON
         String msg = new String(raw);
+        boolean good = router.process(msg);
+
+        if(!good)
+        {
+            LOG.info("Wrong JSON scheme from client");
+            LOG.info("Discarding, sending 400 response to client...");
+
+            response.sendError(400, "Bad JSON POST request");
+            baseRequest.setHandled(true);
+
+            return;
+        }
 
         LOG.info("Sent OK response to client");
 

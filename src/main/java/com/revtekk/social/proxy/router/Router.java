@@ -11,7 +11,7 @@ public class Router
     private static final Gson gson = new Gson();
     private static final Logger LOG = LoggerFactory.getLogger(Router.class);
 
-    public void process(String raw)
+    public boolean process(String raw)
     {
         LOG.info("Parsing JSON");
         Format obj = gson.fromJson(raw, Format.class);
@@ -24,8 +24,10 @@ public class Router
 
             default:
                 LOG.warn("unknown command, ignoring");
-                break;
+                return false;
         }
+
+        return true;
     }
 
     private void register(Map<String, String> data)
