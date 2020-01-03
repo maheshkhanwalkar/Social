@@ -14,4 +14,9 @@ repositories {
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
     compile project(':deps:NioFlex')
+
+    // External dependencies
+    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.30'
+    compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.30'
+    compile group: 'org.yaml', name: 'snakeyaml', version: '1.25'
 }

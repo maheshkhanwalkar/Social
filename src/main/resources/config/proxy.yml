@@ -1,0 +1,3 @@
+port: 10001
+mgrIP: localhost
+mgrPort: 10002
