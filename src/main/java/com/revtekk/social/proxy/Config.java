@@ -2,19 +2,42 @@ package com.revtekk.social.proxy;
 
 public class Config
 {
-    private int port;
+    private String proxyIP;
+    private int proxyPort;
 
     private String mgrIP;
     private int mgrPort;
 
-    public int getPort()
+    // Proxy getter-setters
+    public String getProxyIP()
     {
-        return port;
+        return proxyIP;
     }
 
-    public void setPort(int port)
+    public void setProxyIP(String proxyIP)
     {
-        this.port = port;
+        this.proxyIP = proxyIP;
+    }
+
+    public int getProxyPort()
+    {
+        return proxyPort;
+    }
+
+    public void setProxyPort(int proxyPort)
+    {
+        this.proxyPort = proxyPort;
+    }
+
+    // Manager getter-setters
+    public String getMgrIP()
+    {
+        return mgrIP;
+    }
+
+    public void setMgrIP(String mgrIP)
+    {
+        this.mgrIP = mgrIP;
     }
 
     public int getMgrPort()
@@ -25,15 +48,5 @@ public class Config
     public void setMgrPort(int mgrPort)
     {
         this.mgrPort = mgrPort;
-    }
-
-    public String getMgrIP()
-    {
-        return mgrIP;
-    }
-
-    public void setMgrIP(String mgrIP)
-    {
-        this.mgrIP = mgrIP;
     }
 }

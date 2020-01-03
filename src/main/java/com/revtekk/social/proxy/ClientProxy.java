@@ -43,7 +43,7 @@ public class ClientProxy
         LOG.info("Initialising server");
 
         proxy = ServerBuilder.build(
-                InetAddress.getLocalHost(), conf.getPort(), SocketType.SOCKET_TCP,
+                InetAddress.getByName(conf.getProxyIP()), conf.getProxyPort(), SocketType.SOCKET_TCP,
                 SecurityType.SECURITY_NONE, new Reader());
 
         if(proxy == null) {
