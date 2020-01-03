@@ -1,4 +1,2 @@
-proxyIP: localhost
-proxyPort: 10001
-mgrIP: localhost
-mgrPort: 10002
+IP: localhost
+port: 10002
