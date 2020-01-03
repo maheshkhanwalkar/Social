@@ -8,6 +8,8 @@ public class Config
     private String mgrIP;
     private int mgrPort;
 
+    private int failCount = 5;
+
     // Proxy getter-setters
     public String getProxyIP()
     {
@@ -27,6 +29,16 @@ public class Config
     public void setProxyPort(int proxyPort)
     {
         this.proxyPort = proxyPort;
+    }
+
+    public int getFailCount()
+    {
+        return failCount;
+    }
+
+    public void setFailCount(int failCount)
+    {
+        this.failCount = failCount;
     }
 
     // Manager getter-setters

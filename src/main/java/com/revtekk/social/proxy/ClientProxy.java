@@ -64,7 +64,7 @@ public class ClientProxy
 
         int failures = 0;
 
-        while(failures < 5)
+        while(failures < conf.getFailCount())
         {
             try
             {
