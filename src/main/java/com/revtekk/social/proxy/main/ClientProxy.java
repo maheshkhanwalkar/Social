@@ -1,6 +1,7 @@
 package com.revtekk.social.proxy.main;
 
 import com.revtekk.social.config.ServerConf;
+import org.eclipse.jetty.server.Server;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.yaml.snakeyaml.Yaml;
@@ -8,6 +9,7 @@ import org.yaml.snakeyaml.constructor.Constructor;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.net.InetSocketAddress;
 
 public class ClientProxy
 {
@@ -33,6 +35,22 @@ public class ClientProxy
     private static void startServer()
     {
         LOG.info("Initialising server");
-        // TODO start a server and add hooks
+
+        Server proxy = new Server(new InetSocketAddress(conf.getIP(), conf.getPort()));
+        proxy.setHandler(new Handler());
+
+        try
+        {
+            proxy.start();
+            proxy.join();
+        }
+        catch (Exception e)
+        {
+            LOG.error("Could not start server!");
+            LOG.error(e.getMessage());
+            LOG.error("Exiting...");
+
+            System.exit(-1);
+        }
     }
 }
