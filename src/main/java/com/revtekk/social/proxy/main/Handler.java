@@ -15,7 +15,7 @@ import java.io.IOException;
 public class Handler extends AbstractHandler
 {
     private static final Logger LOG = LoggerFactory.getLogger(Handler.class);
-    private static final Router router = new Router();
+    private static final Router router = Router.getInstance();
 
     @Override
     public void handle(String target, Request baseRequest, HttpServletRequest request,
@@ -47,7 +47,7 @@ public class Handler extends AbstractHandler
 
         if(!good)
         {
-            LOG.info("Wrong JSON scheme from client");
+            LOG.info("Wrong JSON scheme from client or internal failure");
             LOG.info("Discarding, sending 400 response to client...");
 
             response.sendError(400, "Bad JSON POST request");
