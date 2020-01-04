@@ -12,9 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
 import java.io.IOException;
 
-public class Handler extends AbstractHandler
+public class ProxyHandler extends AbstractHandler
 {
-    private static final Logger LOG = LoggerFactory.getLogger(Handler.class);
+    private static final Logger LOG = LoggerFactory.getLogger(ProxyHandler.class);
     private static final Router router = Router.getInstance();
 
     @Override

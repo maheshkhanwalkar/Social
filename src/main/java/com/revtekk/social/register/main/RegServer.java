@@ -1,4 +1,4 @@
-package com.revtekk.social.proxy.main;
+package com.revtekk.social.register.main;
 
 import com.revtekk.social.config.ServerConf;
 import org.eclipse.jetty.server.Server;
@@ -11,14 +11,14 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 
-public class ClientProxy
+public class RegServer
 {
-    private static final Logger LOG = LoggerFactory.getLogger(ClientProxy.class);
+    private static final Logger LOG = LoggerFactory.getLogger(RegServer.class);
     private static ServerConf conf;
 
     public static void main(String[] args) throws IOException
     {
-        LOG.info("Client Proxy");
+        LOG.info("Register Service");
 
         parseConfig();
         startServer();
@@ -26,18 +26,18 @@ public class ClientProxy
 
     private static void parseConfig() throws IOException
     {
-        LOG.info("Reading proxy.yml configuration");
+        LOG.info("Reading register.yml configuration");
 
         Yaml yml = new Yaml(new Constructor(ServerConf.class));
-        conf = yml.load(new FileInputStream("src/main/resources/config/proxy.yml"));
+        conf = yml.load(new FileInputStream("src/main/resources/config/register.yml"));
     }
 
-    private static void startServer()
+    private static void startServer() throws IOException
     {
         LOG.info("Initialising server");
 
         Server proxy = new Server(new InetSocketAddress(conf.getIP(), conf.getPort()));
-        proxy.setHandler(new ProxyHandler());
+        proxy.setHandler(new RegHandler());
 
         try
         {
