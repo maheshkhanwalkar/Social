@@ -36,13 +36,18 @@ public class ProxyHandler extends AbstractHandler
             return;
         }
 
-        BufferedReader br = request.getReader();
-        int len = request.getContentLength();
+        String msg = readMessage(request.getReader(), request.getContentLength());
 
-        char[] raw = new char[len];
-        br.read(raw);
+        if(msg == null)
+        {
+            LOG.info("JSON message is null, ignoring");
 
-        String msg = new String(raw);
+            response.sendError(400, "Bad JSON POST request");
+            baseRequest.setHandled(true);
+
+            return;
+        }
+
         boolean good = router.process(msg);
 
         if(!good)
@@ -64,5 +69,16 @@ public class ProxyHandler extends AbstractHandler
         response.getWriter().println("OK");
 
         baseRequest.setHandled(true);
+    }
+
+    private String readMessage(BufferedReader br, int length) throws IOException
+    {
+        char[] raw = new char[length];
+        int res = br.read(raw);
+
+        if(res == -1)
+            return null;
+
+        return new String(raw);
     }
 }
